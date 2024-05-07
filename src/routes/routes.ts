@@ -24,10 +24,11 @@ router.post("/chat-groups", AuthMiddleware, chatGroupController.create);
 router.put("/chat-groups/:groupId", AuthMiddleware, chatGroupController.updateChatGroup);
 router.get("/chat-groups/:groupId", AuthMiddleware, chatGroupController.getChatGroup);
 router.get("/chat-groups", AuthMiddleware, chatGroupController.listChatGroups);
-router.get("/chat-groups/last-messages", AuthMiddleware, chatGroupController.getLastChatMessages);
 
-// Adicionar usuário a um grupo existente
+//  Rotas para lidar com relacionamento User e Chat Group
 router.post("/chat-groups/:groupId/add-user", AuthMiddleware, userChatGroupController.addUserToGroup);
+router.delete("/chat-groups/:groupId/leave-chat", AuthMiddleware, userChatGroupController.leaveChatGroup);
+router.get("/user-chat-groups", AuthMiddleware, userChatGroupController.getMyChats);
 
 // Rotas para mensagens
 router.post("/message", AuthMiddleware, messageController.create);
